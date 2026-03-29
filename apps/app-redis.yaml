@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-redis
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/BuiHongKong/EKS-Docker.git
+    targetRevision: HEAD
+    path: services/redis # Trỏ vào thư mục redis
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
