@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: storage-nginx-svc
+  namespace: default
+spec:
+  selector:
+    app: my-nginx # Phải trùng với label của Deployment
+  ports:
+    - protocol: TCP
+      port: 80 # Cổng của Service
+      targetPort: 80 # Cổng trong container Nginx
+  type: ClusterIP
